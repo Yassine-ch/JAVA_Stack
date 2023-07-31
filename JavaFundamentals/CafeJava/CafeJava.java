@@ -15,9 +15,9 @@ public class CafeJava {
     
         // Customer name variables (add yours below)
         String customer1 = "Cindhuri";
-        String customer2= "Sam";
-        String customer3 = "Joe";
-        String customer4 = "Doe";
+        String customer2 = "Sam";
+        String customer3 = "Jimmy";
+        String customer4 = "Noah";
     
         // Order completions (add yours below)
         boolean isReadyOrder1 = false;
@@ -30,5 +30,22 @@ public class CafeJava {
         // Example:
         System.out.println(generalGreeting + customer1); // Displays "Welcome to Cafe Java, Cindhuri"
     	// ** Your customer interaction print statements will go here ** //
+           // Cindhuri
+           System.out.println(customer1 + (isReadyOrder1 ? readyMessage : pendingMessage));
+           // Noah
+        if(isReadyOrder4) {
+            System.out.println(customer4 + readyMessage);
+            System.out.println(displayTotalMessage + cappuccinoPrice);
+        } else {
+            System.out.println(customer4 + pendingMessage);
+        }
+
+        // Sam
+        System.out.println(displayTotalMessage + lattePrice * 2);
+        System.out.println(customer2 + (isReadyOrder2 ? readyMessage : pendingMessage));
+
+        // Jimmy
+        System.out.println(customer2 + displayTotalMessage + (lattePrice -  dripCoffeePrice));
+
     }
 }

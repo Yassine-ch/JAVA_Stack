@@ -24,6 +24,7 @@ public class AlfredTest {
         		
         );
         
+        System.out.println("shshsjhs");
         // Print the greetings to test.
         System.out.println(testGreeting);
         

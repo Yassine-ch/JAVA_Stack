@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1 class="text-center mt-5">You have visited <a href="/"><c:out value="${page}"/></a> <c:out value="${count}"/> time(s).</h1>
+	<p class="text-center mt-5"><a href="/your_server">Test another visit?</a></p>
+	<p class="text-center"><a href="/count-two/">Add 2 visits</a></p>
+	<p class="text-center"><a href="/reset-counter/">Reset counter</a></p>
 </body>
 </html>

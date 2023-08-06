@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<h1>Fruit Store</h1>
-		<table class="table tablecolor">
+		<table class="table tablecolor ">
 			<tbody>
 				<tr>
 					<th scope="col">Name</th>

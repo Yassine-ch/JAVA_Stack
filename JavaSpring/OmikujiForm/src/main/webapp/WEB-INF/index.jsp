@@ -12,7 +12,7 @@
 <body>
 	<div class="w-50 mx-auto mt-3">
 		<h1>Send an Omikuji</h1>
-		<form action="/omikuji/process" method="post" class="border p-3 rounded">
+		<form action="/process" method="post" class="border p-3 rounded">
 			<div class="mb-3">
 				<label class="form-label">Pick any number from 5 to 25</label>
 				<input type="number" name="year" class="form-control">

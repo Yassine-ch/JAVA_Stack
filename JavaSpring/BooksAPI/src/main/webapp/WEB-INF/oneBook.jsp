@@ -18,7 +18,10 @@
     <script type="text/javascript" src="/js/app.js"></script><!-- change to match your file/naming structure -->
 </head>
 <body>
-   
+   <h1>About ${book.title }</h1>
+   <hr>
+ <li>  Description:${book.description }</li>
+  <li> # of Pages :${book.numberOfPages }</li>
 </body>
 </html>
 

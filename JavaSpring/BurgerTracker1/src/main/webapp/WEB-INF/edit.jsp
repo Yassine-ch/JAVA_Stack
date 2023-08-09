@@ -25,6 +25,7 @@
 		<form:form action="/burgers/edit/${oneBurger.id }" method="put" modelAttribute="oneBurger">
 			<div class="mb-3">
 				<form:label path="name" class="form-label">Burger Name</form:label>
+			
 				<form:input path="name" type="text" class="form-control" />
 				<p class="form-text text-danger"><form:errors path="name"/></p>
 			</div>

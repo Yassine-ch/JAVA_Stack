@@ -18,12 +18,12 @@
     <script type="text/javascript" src="/js/app.js"></script><!-- change to match your file/naming structure -->
 </head>
 <body>
-   <h1>All the books</h1>
+  
    <c:forEach items="${bookList }" var="oneBook">
    
-   <h3>
 
-   </h3>
+<div class="container">
+ <h1>All the books</h1>
    <table class="table" >
      <tr>
     <th scope="col">title</th>
@@ -36,6 +36,7 @@
     <td>${oneBook.numberOfPages }</td>
   </tr>
    </table>
+</div>
 
    </c:forEach>
 </body>

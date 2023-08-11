@@ -19,7 +19,7 @@ public class StudentService {
 		return studentRepository.findAll();
 	}
 	//retrieve all without dorms
-	public List<Student> allSudentsWithOutDorm(){
+	public List<Student> allStudentsWithoutADorm(){
 		List<Student> allStudents = studentRepository.findAll();
 	for (int i = 0; i< allStudents.size();i++) {
 		Student temp = allStudents.get(i);
@@ -32,7 +32,7 @@ public class StudentService {
 	}
 	
 	//+---++--+-+-+- CREATE ONE
-	public Student createSudent(Student s) {
+	public Student createStudent(Student s) {
 		return studentRepository.save(s);
 		
 	}
@@ -49,7 +49,7 @@ public class StudentService {
 	}
 	
 	//+-+-+-+-UPDATE ONE#
-	public Student updateSudent(Student s) {
+	public Student updateStudent(Student s) {
 		return studentRepository.save(s);
 	}
 	//+*-+-+-+-*-DELETE ONE

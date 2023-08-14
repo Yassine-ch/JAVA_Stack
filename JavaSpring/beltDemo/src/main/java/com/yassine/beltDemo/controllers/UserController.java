@@ -45,7 +45,7 @@ public class UserController {
 		session.setAttribute("userId", registeredUser.getId());
 		session.setAttribute("userName", registeredUser.getUserName());
 
-		return "redirect:/welcome";
+		return "redirect:/home";
 	}
 	
 	
@@ -64,7 +64,7 @@ public class UserController {
 		session.setAttribute("userId", loggedInUser.getId());
 		session.setAttribute("userName", loggedInUser.getUserName());
 		
-		return "redirect:/welcome";
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/logout")
@@ -75,13 +75,6 @@ public class UserController {
 	
 	
 	
-	@GetMapping("/welcome")
-	public String welcomePage(HttpSession session) {
-		
-		if (session.getAttribute("userId") == null) {
-			return "redirect:/";
-		}
-		return "welcome.jsp";
-	}
+
 
 }

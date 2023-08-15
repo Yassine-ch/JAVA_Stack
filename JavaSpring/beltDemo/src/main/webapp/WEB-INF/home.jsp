@@ -24,7 +24,7 @@
    </h1>
    <hr>
   <c:forEach items="${allCars }" var="oneCar">
-  ${oneCar.model }<br>
+ <p> ${oneCar.model } is driven by ${oneCar.driver.userName }
   
   </c:forEach>
    

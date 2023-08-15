@@ -1,15 +1,15 @@
-package com.yassine.beltDemo.services;
+package com.yassine.ProjectManager.services;
 
 import java.util.Optional;
 
+import com.yassine.ProjectManager.models.LoginUser;
+import com.yassine.ProjectManager.models.User;
+import com.yassine.ProjectManager.repositories.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.yassine.beltDemo.models.LoginUser;
-import com.yassine.beltDemo.models.User;
-import com.yassine.beltDemo.repositories.UserRepository;
 
 @Service
 public class UserService {
@@ -65,14 +65,5 @@ public class UserService {
 		// Otherwise, return the user object
 		return user;
 	}
-	//   READ ONE
-    public User findOne(Long id) {
-    	Optional<User> maybeUser = userRepository.findById(id);
-    	if(maybeUser.isPresent()) {
-    		return maybeUser.get();
-    	} else {
-    		return null;
-    	}
-}
 
 }

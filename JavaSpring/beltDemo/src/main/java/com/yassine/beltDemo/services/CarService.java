@@ -24,7 +24,7 @@ public class CarService {
 		return carRepository.save(car);
 	}
 	
-	public Car findSong(Long id) {
+	public Car findCar(Long id) {
 		Optional <Car> optionalCar = carRepository.findById(id);
 		if(optionalCar.isPresent()) {
 			return optionalCar.get();

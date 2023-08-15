@@ -1,69 +1,70 @@
 package com.yassine.ProjectManager.services;
 
+import java.util.List;
 import java.util.Optional;
 
-import com.yassine.ProjectManager.models.LoginUser;
-import com.yassine.ProjectManager.models.User;
-import com.yassine.ProjectManager.repositories.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.yassine.ProjectManager.models.LoginUser;
+import com.yassine.ProjectManager.models.User;
+import com.yassine.ProjectManager.repositories.UserRepository;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private UserRepository userRepository;
+	public UserRepository userRepository;
 
+	// TO-DO: Write register and login methods!
 	public User register(User newUser, BindingResult result) {
-		// TO-DO - Reject values:
-		// Reject if email is taken (present in database)
-		// 1. Find user in the DB by email
-		Optional<User> optionalUser = userRepository.findByEmail(newUser.getEmail());
-		// 2. if the email is present , reject
-		if (optionalUser.isPresent()) {
-			result.rejectValue("email", "unique", "This email is already registered");
+
+		Optional<User> potentialUser = userRepository.findByEmail(newUser.getEmail());
+		if (potentialUser.isPresent()) {
+			result.rejectValue("email", "registerError", "Email is Taken");
 		}
-		// Reject if password doesn't match confirmation
 		if (!newUser.getPassword().equals(newUser.getConfirm())) {
-			result.rejectValue("confirm", "matches", "This confirm password does not match");
+			result.rejectValue("password", "registerError", "password does not match");
 		}
-		// if result has errors, return
 		if (result.hasErrors()) {
 			return null;
-		}
-		// Hash and set password, save user to database
+		} else {
+			String hashdPW = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+			newUser.setPassword(hashdPW);
+			return userRepository.save(newUser);
 
-		String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
-		newUser.setPassword(hashed);
-		return userRepository.save(newUser);
+		}
+
 	}
 
-	public User login(LoginUser newLogin, BindingResult result) {
-		// Find user in the DB by email
-		// 1. Find user in the DB by email
-		Optional<User> optionalUser = userRepository.findByEmail(newLogin.getEmail());
-		// 2. if the email is not present , reject
-		if (!optionalUser.isPresent()) {
-			result.rejectValue("email", "unique", "This email is not registered");
-			return null;
+	public User login(LoginUser newLoginObject, BindingResult result) {
+		Optional<User> potentialLogin = userRepository.findByEmail(newLoginObject.getEmail());
+		if (!potentialLogin.isPresent()) {
+			result.rejectValue("email", "loginError", "email not found");
+		} else {
+			User actualUser = potentialLogin.get();
+			if (!BCrypt.checkpw(newLoginObject.getPassword(), actualUser.getPassword())) {
+				result.rejectValue("password", "loginError", "password incorrect");
+			} if (result.hasErrors()) {
+				return null;
+			} else {
+				return actualUser;
+			}
 		}
-		// 3.1 grab the user from potential user
-		User user = optionalUser.get();
-		// 3.2 if BCrypt password match fails
-		if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
-			result.rejectValue("password", "matches", "The password does not match for this email");
-
-		}
-		// 4 if result has errors,return
-
-		if (result.hasErrors()) {
-			return null;
-		}
-		// Otherwise, return the user object
-		return user;
+		return null;
 	}
-
+	public User getUserById(Long id) {
+		Optional<User> user = userRepository.findById(id);
+		if(user.isPresent()) {
+			return user.get();
+		} else 
+			return null;
+		
+	}
+	
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 }
